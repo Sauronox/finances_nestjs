@@ -3,9 +3,15 @@ version: '3.1'
 services:
 
   backend:
-    image: docker pull monkeythedev/svelte-material-ui-website
+    build:
+      context: ./finances
+      dockerfile: ./docker/Dockerfile
+    command: yarn start:dev
     ports:
       - "3000:3000"
+    volumes: 
+      - ./finances:/opt/app
+      - /opt/app/node_modules
   nginx:
     image: nginx
     volumes:
@@ -15,3 +21,9 @@ services:
     environment:
       # - NGINX_HOST=foobar.com
       - NGINX_PORT=80
+    depends_on:
+      - backend
+
+
+volumes:
+  database-data:
