@@ -1,8 +1,21 @@
-version: '3.1'
+version: '3.7'
 
 services:
 
+  nginx:
+    container_name: nginx
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes: 
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on: 
+      - backend
+    networks:
+      - webnet
+
   backend:
+    container_name: backend
     build:
       context: ./finances
       dockerfile: ./docker/Dockerfile
@@ -12,18 +25,26 @@ services:
     volumes: 
       - ./finances:/opt/app
       - /opt/app/node_modules
+    networks:
+      - webnet
+    
+  # caddy:
+  #   image: caddy:alpine
+  #   restart: unless-stopped
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"   
+  #   volumes:
+  #     - $PWD/caddy/Caddyfile:/etc/caddy/Caddyfile
+  #     - $PWD/finances:/srv
+  #     - ./caddy/caddy_data:/data
+  #     - ./caddy/caddy_config:/config
+  #   depends_on:
+  #     - backend
+
+volumes: 
   nginx:
-    image: nginx
-    volumes:
-      - ./templates:/etc/nginx/templates
-    ports:
-      - "8080:80"
-    environment:
-      # - NGINX_HOST=foobar.com
-      - NGINX_PORT=80
-    depends_on:
-      - backend
+  backend:
 
-
-volumes:
-  database-data:
+networks:
+  webnet:
