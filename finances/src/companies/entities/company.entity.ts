@@ -1,12 +1,12 @@
 import { Stats } from "./stats.entity";
 
 export class Company {
-    id: string;
+    companySymbol: string;
     name: string;
-    stats: any;
+    stats: Stats;
 
-    constructor(id: string, name: string, stats: Stats){
-        this.id = id;
+    constructor(companySymbol: string, name: string, stats: Stats){
+        this.companySymbol = companySymbol;
         this.name = name;
         this.stats = stats;
     }

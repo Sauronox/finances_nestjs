@@ -16,8 +16,8 @@ export class CompaniesController {
     return this.companiesService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.companiesService.findOne(+id);
+  @Get(':companySymbol')
+  findOne(@Param('companySymbol') companySymbol: string) {
+    return this.companiesService.findOne(companySymbol);
   }
 }

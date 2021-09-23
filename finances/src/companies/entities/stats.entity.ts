@@ -1,12 +1,11 @@
 export class Stats{
-    truc1: number;
-    truc2: number;
-    truc3: number;
+    roeTTM: number;
+    ebitdPerShareTTM: number;
+    netProfitMarginTTM: number;
 
-    constructor(truc1: number, truc2: number, truc3: number){
-        this.truc1 = truc1;
-        this.truc2 = truc2;
-        this.truc3 = truc3;
-    }
-    
+    constructor(roeTTM: number, ebitdPerShareTTM: number, netProfitMarginTTM: number){
+        this.roeTTM = roeTTM;
+        this.ebitdPerShareTTM = ebitdPerShareTTM;
+        this.netProfitMarginTTM = netProfitMarginTTM;
+    }  
 }
