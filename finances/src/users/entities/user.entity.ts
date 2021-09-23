@@ -1,8 +1,8 @@
 export class User {
-    name: string
-    surname: string
+  name: string;
+  surname: string;
 
-    constructor(partial: Partial<User>){
-        Object.assign(this, partial);
-    }
+  constructor(partial: Partial<User>) {
+    Object.assign(this, partial);
+  }
 }

@@ -1,31 +1,31 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
-import { Company } from './entities/company.entity';
-import { Stats } from './entities/stats.entity';
+import { InjectModel } from '@nestjs/mongoose';
+import { Company, CompanyDocument } from './schema/company.schema';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class CompaniesService {
+  constructor(
+    @InjectModel(Company.name) private companyModel: Model<CompanyDocument>,
+  ) {}
 
-  companies:Company[] = [];
-
-  create(createCompanyDto: CreateCompanyDto) {
-    const newCompany = new Company("toto","company1",new Stats(10,34,23));
-    this.companies.push(newCompany);
-
-    return 'This action adds a new company';
+  async create(createCompanyDto: CreateCompanyDto): Promise<Company> {
+    const createdCompany = new this.companyModel(createCompanyDto);
+    return createdCompany.save();
   }
 
-  findAll() {
-    return this.companies;
+  async findAll(): Promise<Company[]> {
+    return this.companyModel.find().exec();
   }
 
   findOne(name: string) {
-    const company = this.companies.find(element => element.name = name)
+    /*const company = this.companies.find(element => element.name = name)
     if(!company){
       throw new NotFoundException;
-    }
-    return {...company};
+    }*/
+    return true;
   }
 
   update(id: number, updateCompanyDto: UpdateCompanyDto) {
