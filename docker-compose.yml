@@ -39,6 +39,9 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: $DB_FINANCE_USER
       MONGO_INITDB_ROOT_PASSWORD: $DB_FINANCE_PASSWORD
+      MONGO_INITDB_DATABASE: $DB_NAME
+    volumes:
+      - db:/data/db
     ports:
        - 27017:27017
     networks:
@@ -76,7 +79,7 @@ services:
 volumes: 
   nginx:
   backend:
-
+  db:
 networks:
   webnet:
   db:
