@@ -3,7 +3,7 @@ version: '3.1'
 services:
 
   backend:
-    image: docker pull monkeythedev/svelte-material-ui-website
+    image: monkeythedev/svelte-material-ui-website
     ports:
       - "3000:3000"
   nginx:
