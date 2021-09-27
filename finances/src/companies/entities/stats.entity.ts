@@ -1,15 +1,15 @@
 export class Stats {
   roeTTM: number;
-  ebitdPerShareTTM: number;
+  yield: number;
   netProfitMarginTTM: number;
 
   constructor(
     roeTTM: number,
-    ebitdPerShareTTM: number,
+    yield_cons: number,
     netProfitMarginTTM: number,
   ) {
     this.roeTTM = roeTTM;
-    this.ebitdPerShareTTM = ebitdPerShareTTM;
+    this.yield = yield_cons;
     this.netProfitMarginTTM = netProfitMarginTTM;
   }
 }
