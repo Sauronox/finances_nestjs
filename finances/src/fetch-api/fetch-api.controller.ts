@@ -2,6 +2,7 @@ import { BadRequestException, Controller, Get } from '@nestjs/common';
 import { FetchApiService } from './fetch-api.service';
 import { HttpService } from '@nestjs/axios';
 import { map } from 'rxjs';
+import { plainToClass } from 'class-transformer';
 
 @Controller('fetch-api')
 export class FetchApiController {
@@ -14,7 +15,7 @@ export class FetchApiController {
     try {
       return this.httpService.get('/stock/metric?symbol=AAPL&metric=all').pipe(
         map((result) => {
-          return result.data;
+          return plainToClass(ApiStockModel, result);
         }),
       );
     } catch (error) {

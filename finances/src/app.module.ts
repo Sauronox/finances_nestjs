@@ -8,6 +8,6 @@ import { FetchApiModule } from './fetch-api/fetch-api.module';
 @Module({
   imports: [UsersModule, FetchApiModule],
   controllers: [AppController],
-  providers: [AppService, FetchApiService],
+  providers: [AppService],
 })
 export class AppModule {}
