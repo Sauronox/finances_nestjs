@@ -16,12 +16,12 @@ import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('users')
 export class UsersController {
-  logger = new Logger('UsersController')
+  logger = new Logger('UsersController');
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
-    this.logger.debug(createUserDto)
+    this.logger.debug(createUserDto);
     return this.usersService.create(createUserDto);
   }
 
