@@ -1,3 +1,4 @@
+
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { Stats } from '../entities/stats.entity';
@@ -11,6 +12,9 @@ export class Company {
 
   @Prop()
   name: string;
+
+  @Prop()
+  stats: Stats;
 }
 
 export const CompanySchema = SchemaFactory.createForClass(Company);

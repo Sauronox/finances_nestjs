@@ -20,19 +20,23 @@ export class CompaniesService {
     return this.companyModel.find().exec();
   }
 
-  findOne(name: string) {
-    /*const company = this.companies.find(element => element.name = name)
+  findOne(companySymbol: string) {
+    const company = this.companyModel.find({ companySymbol: companySymbol})
     if(!company){
       throw new NotFoundException;
-    }*/
-    return true;
+    }
+    return company;
   }
 
-  update(id: number, updateCompanyDto: UpdateCompanyDto) {
-    return `This action updates a #${id} company`;
+  
+  async update(companySymbol: string,updateCompanyDto: UpdateCompanyDto): Promise<Company> {
+    var company = this.companyModel.find(element => element.name = companySymbol) 
+
+  return
+    //return this.companyModel.updateOne();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} company`;
+  remove(companySymbol: string) {
+    return this.companyModel.deleteOne({companySymbol: companySymbol});
   }
 }

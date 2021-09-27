@@ -17,8 +17,8 @@ import { MongooseModule } from '@nestjs/mongoose';
         console.log(configService.get<string>('MONGODB_URI'))
         return ({
         uri: configService.get<string>('MONGODB_URI'),
-        user: "financeuseradmin",
-        pass: "3EHKxSMJaTaiitiMcC84benBj75DndFkco5Yk",
+        user: configService.get<string>('DB_FINANCE_USER'),
+        pass: configService.get<string>('DB_FINANCE_PASSWORD'),
         auth: {authSource: "admin"}
       })},
       inject: [ConfigService],

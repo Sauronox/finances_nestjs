@@ -6,4 +6,6 @@ export class CreateCompanyDto {
   companySymbol: string;
   @IsNotEmpty()
   name: string;
+  @IsNotEmpty()
+  stats: Stats;
 }
