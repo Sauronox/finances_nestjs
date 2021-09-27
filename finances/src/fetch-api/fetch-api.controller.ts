@@ -1,4 +1,4 @@
-import { BadRequestException, Controller, Get } from '@nestjs/common';
+import {BadRequestException, Controller, Get, Param} from '@nestjs/common';
 import { FetchApiService } from './fetch-api.service';
 import { HttpService } from '@nestjs/axios';
 import { map } from 'rxjs';
@@ -11,10 +11,10 @@ export class FetchApiController {
     private readonly fetchApiService: FetchApiService,
     private httpService: HttpService,
   ) {}
-  @Get()
-  findAll() {
+  @Get(':mnemonic')
+  findAll(@Param('mnemonic') mnemonic: string) {
     try {
-      return this.httpService.get('/stock/metric?symbol=AAPL&metric=all').pipe(
+      return this.httpService.get('/stock/metric?symbol='+mnemonic+'&metric=all').pipe(
         map((result) => {
           console.log(result.data);
           const fetchedValue = result.data.metric;
