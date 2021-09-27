@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put, Query } from '@nestjs/common';
 import { CompaniesService } from './companies.service';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
@@ -14,8 +14,8 @@ export class CompaniesController {
   }
   
   @Put()
-  update(@Body() updateCompanyDto: UpdateCompanyDto, @Body() companySymbol: string ) {
-    return this.companiesService.update(companySymbol,updateCompanyDto);
+  update(@Body() updateCompanyDto: UpdateCompanyDto) {
+    return this.companiesService.update(updateCompanyDto);
   }
 
   @Get(':companySymbol')
@@ -24,7 +24,7 @@ export class CompaniesController {
   }
 
   @Delete()
-  remove(@Body() companySymbol: string){
+  remove(@Query('companySymbol') companySymbol: string){
     return this.companiesService.remove(companySymbol);
   }
 }
