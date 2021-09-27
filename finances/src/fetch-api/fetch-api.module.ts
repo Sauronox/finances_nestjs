@@ -9,8 +9,8 @@ import {FetchApiService} from "./fetch-api.service";
     HttpModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        baseURL: 'https://finnhub.io',
-        headers: {},
+        baseURL: 'https://finnhub.io/api/v1',
+        headers: { 'X-Finnhub-Token': 'c54rc5iad3ifdcrdtu20' },
       }),
       inject: [ConfigService],
     }),
