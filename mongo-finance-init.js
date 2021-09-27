@@ -1,6 +1,6 @@
 const username = _getEnv('DB_FINANCE_USER')
 const password = _getEnv('DB_FINANCE_PASSWORD')
-const db_name = _getEnv('DB_NAME')
+const db_name = _getEnv('DB_FINANCE_NAME')
 
 
 dbf = db.getSiblingDB(db_name);
