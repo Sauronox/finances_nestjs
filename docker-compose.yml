@@ -25,6 +25,8 @@ services:
     command: yarn start:dev
     env_file:
       - .env
+      - .env.local
+      - .env.production
     ports:
       - 3000:3000
     volumes: 
@@ -44,6 +46,8 @@ services:
       MONGO_INITDB_DATABASE: $DB_NAME
     env_file:
       - .env
+      - .env.local
+      - .env.production
     volumes:
       - db:/data/db
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
