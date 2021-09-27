@@ -27,6 +27,8 @@ services:
       - .env
     ports:
       - 3000:3000
+    env_file:
+      - .env
     volumes: 
       - ./finances:/opt/app
       - /opt/app/node_modules

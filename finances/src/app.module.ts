@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
+import { FetchApiService } from './fetch-api/fetch-api.service';
+import { FetchApiModule } from './fetch-api/fetch-api.module';
 import { CompaniesModule } from './companies/companies.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -11,6 +13,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     ConfigModule.forRoot(),
     UsersModule,
     CompaniesModule,
+    FetchApiModule,
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => {
