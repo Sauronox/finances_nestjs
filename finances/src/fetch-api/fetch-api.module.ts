@@ -2,15 +2,16 @@ import { Module } from '@nestjs/common';
 import { FetchApiController } from './fetch-api.controller';
 import { HttpModule } from '@nestjs/axios';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import {FetchApiService} from "./fetch-api.service";
+import { FetchApiService } from './fetch-api.service';
 
 @Module({
   imports: [
+    ConfigModule,
     HttpModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        baseURL: 'https://finnhub.io/api/v1',
-        headers: { 'X-Finnhub-Token': 'c54rc5iad3ifdcrdtu20' },
+        baseURL: configService.get('FINNHUB_APIENDPOINT'),
+        headers: { 'X-Finnhub-Token': configService.get('FINNHUB_APIKEY') },
       }),
       inject: [ConfigService],
     }),
