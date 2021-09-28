@@ -8,11 +8,11 @@ services:
     ports:
       - 80:80
       - 443:443
-    volumes: 
+    volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./certs:/etc/nginx/certs
       - ./secrets/global.pass:/etc/keys/global.pass
-    depends_on: 
+    depends_on:
       - backend
     networks:
       - webnet
@@ -23,13 +23,13 @@ services:
       context: ./finances
       dockerfile: ./docker/Dockerfile
     command: yarn start:dev
-    env_file:
-      - .env
+    depends_on:
+      - mongo
     ports:
       - 3000:3000
     env_file:
       - .env
-    volumes: 
+    volumes:
       - ./finances:/opt/app
       - /opt/app/node_modules
     networks:
@@ -40,31 +40,34 @@ services:
     image: mongo
     container_name: mongo
     restart: always
+    env_file:
+      - .env
     environment:
       MONGO_INITDB_ROOT_USERNAME: $DB_FINANCE_USER
       MONGO_INITDB_ROOT_PASSWORD: $DB_FINANCE_PASSWORD
       MONGO_INITDB_DATABASE: $DB_NAME
-    env_file:
-      - .env
+
     volumes:
-      - db:/data/db
+      - dbmongo:/data/db
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
     ports:
        - 27017:27017
     networks:
       - webnet
       - db
-      
+
   mongo-express:
     image: mongo-express
     restart: always
     ports:
       - 8081:8081
+    env_file:
+      - .env
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: $DB_FINANCE_USER
       ME_CONFIG_MONGODB_ADMINPASSWORD: $DB_FINANCE_PASSWORD
       ME_CONFIG_MONGODB_SERVER: mongo
-    depends_on: 
+    depends_on:
       - mongo
     networks:
       - db
@@ -74,7 +77,7 @@ services:
   #   restart: unless-stopped
   #   ports:
   #     - "80:80"
-  #     - "443:443"   
+  #     - "443:443"
   #   volumes:
   #     - $PWD/caddy/Caddyfile:/etc/caddy/Caddyfile
   #     - $PWD/finances:/srv
@@ -83,10 +86,10 @@ services:
   #   depends_on:
   #     - backend
 
-volumes: 
+volumes:
   nginx:
   backend:
-  db:
+  dbmongo:
 networks:
   webnet:
   db:
