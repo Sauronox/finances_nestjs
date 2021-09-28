@@ -29,6 +29,7 @@ export class FetchApiService {
             map((result) => {
               const fetchedValue = result.data.metric;
               return new ApiStockModel(
+                mnemonic,
                 fetchedValue.dividendYieldIndicatedAnnual,
                 fetchedValue.netProfitMarginTTM,
                 fetchedValue.roeTTM,
