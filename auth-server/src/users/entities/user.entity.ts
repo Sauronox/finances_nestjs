@@ -1,4 +1,4 @@
-import { Entity, ObjectID, ObjectIdColumn, Column } from 'typeorm';
+import { Prop, SchemaFactory } from '@nestjs/mongoose';
 
 
 export enum UserRole{
@@ -7,21 +7,19 @@ export enum UserRole{
 }
 
 export class User {
-  @ObjectIdColumn()
-  id: ObjectID;
 
-  @Column()
+  @Prop({type: String, required: true})
   username: string;
 
-  @Column()
+  @Prop({type: String, required: true})
   email: string;
 
-  @Column()
+  @Prop({type: String, required: true})
   password: string;
 
-  @Column({
-    type: "enum",
-    enum: UserRole,
+  @Prop({
+    type: Number,
+    enum : UserRole,
     default: UserRole.USER
   })
   role: UserRole;
@@ -33,3 +31,6 @@ export class User {
     this.role = role ?? UserRole.USER;
   }
 }
+
+export const UserSchema = SchemaFactory.createForClass(User);
+export type UserDocument = User & Document;

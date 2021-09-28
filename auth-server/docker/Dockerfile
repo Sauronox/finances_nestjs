@@ -6,3 +6,4 @@ COPY . .
 
 RUN yarn
 RUN yarn build
+RUN npm rebuild bcrypt --build-from-source

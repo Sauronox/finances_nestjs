@@ -26,6 +26,7 @@
     "@nestjs/config": "^1.0.1",
     "@nestjs/core": "^8.0.0",
     "@nestjs/jwt": "^8.0.0",
+    "@nestjs/mongoose": "^9.0.0",
     "@nestjs/passport": "^8.0.1",
     "@nestjs/platform-express": "^8.0.7",
     "@nestjs/typeorm": "^8.0.2",
@@ -37,14 +38,14 @@
     "class-validator": "^0.13.1",
     "express": "^4.17.1",
     "mongodb": "^4.1.2",
-    "mongoose": "^6.0.7",
+    "mongoose": "^6.0.8",
     "passport": "^0.5.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
-    "typeorm": "^0.2.37"
+    "typeorm": "^0.3.0-alpha.24"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",
