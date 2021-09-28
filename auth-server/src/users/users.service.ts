@@ -19,12 +19,13 @@ export class UsersService {
     return await this.usersRepository.create(newUser);
   }
 
-  async retreiveUser(email: string) {
-    return await this.usersRepository.find({
-      where: {
-        email: { $eq: email },
-      },
-    });
+  async findOne(email: string): Promise<User> {
+    return await this.usersRepository.findOne({email: email})
+    // .find({
+    //   where: {
+    //     email: { $eq: email },
+    //   },
+    // });
   }
 
   async deleteUser(id: string) {

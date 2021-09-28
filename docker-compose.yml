@@ -37,7 +37,7 @@ services:
   auth_backend:
     container_name: auth_backend
     build:
-      context: ./oauth-server
+      context: ./auth-server
       dockerfile: ./docker/Dockerfile
     command: yarn start:dev
     env_file:
@@ -45,7 +45,7 @@ services:
     ports:
       - 3001:3000
     volumes: 
-      - ./oauth-server:/opt/app
+      - ./auth-server:/opt/app
       - /opt/app/node_modules
     networks:
       - webnet
