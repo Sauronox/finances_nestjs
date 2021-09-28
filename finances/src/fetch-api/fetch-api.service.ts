@@ -12,11 +12,8 @@ export class FetchApiService {
     let allStocksFetched: ApiStockModel[] = [];
     for (const element of allStocks) {
       const stock = await this.fetchOneStock(element);
-      console.log(element);
-      console.log(stock);
       allStocksFetched.push(stock);
     }
-    console.log(allStocksFetched);
     return allStocksFetched;
   }
 
